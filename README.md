@@ -39,6 +39,8 @@ pip install -r requirements.txt --upgrade
 2. making action more responsive
 3. improvin UI and design.
 4. Making it on State based framwork like Angular/React.
+5. making it JSON-REST based.
+6. Paginating items lists.
 
 ## Challanges Faced and Issues
 
