@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="blog-area">
+    <div class="container">
+      <div class="row">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Items Name</th>
+              <th scope="col">Price(In Cents)</th>
+              <th scope="col">ID</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Vendor</th>
+              <th scope="col">Batch No.</th>
+              <th scope="col">Action Type</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for approval in items %} 
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td>{{ approval.item.name }}</td>
+              <td>{{ approval.item.price }}</td>
+              <td>{{ approval.item.item_id }}</td>
+              <td>{{ approval.item.quantity }}</td>
+              <td>{{ approval.item.vendor }}</td>
+              <td>{{ approval.item.batch_no }}</td>
+              <td>{{ approval.action_type }}</td>
+              {% if current_user.role_name == "admin" %}
+                <td><a class="primary-btn" type="button" href="/action_taken/{{approval.id}}">Approve</a></td>
+              {% else %}
+              <td>PENDING</td>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+ 

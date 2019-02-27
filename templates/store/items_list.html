@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="blog-area">
+    <div class="container">
+      <div class="row">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Items Name</th>
+              <th scope="col">Price(In Cents)</th>
+              <th scope="col">ID</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Vendor</th>
+              <th scope="col">Batch No.</th>
+              <th scope="col">Delete</th>
+              <th scope="col">Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in items %} 
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.price }}</td>
+              <td>{{ item.item_id }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.vendor }}</td>
+              <td>{{ item.batch_no }}</td>
+              {% if current_user.role_name == "admin" %}
+              <td><a class="primary-btn" type="button" href="/remove_item/{{item.id}}">Delete</a></td>
+              <td><a class="primary-btn" type="button" href="/edit_items/{{item.id}}">Edit</a></td>
+              {% else %}
+              <td><a class="primary-btn" type="button" href="/remove_approval_item/{{item.id}}">Delete</a></td>
+              <td><a class="primary-btn" type="button" href="/edit_approval_items/{{item.id}}">Edit</a></td>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+ 
